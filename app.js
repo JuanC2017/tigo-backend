@@ -11,6 +11,8 @@ var cliente_routes = require('./routes/cliente');
 var producto_routes = require('./routes/producto');
 var saldo_routes = require('./routes/saldo');
 var reportar_routes = require('./routes/reportar');
+var ip_routes = require('./routes/ip');
+var recarga_routes = require('./routes/recarga');
 
 //middlewares de body-parser
 app.use(bodyParser.urlencoded({extended:false}));
@@ -25,6 +27,8 @@ app.use('/apic', cliente_routes);
 app.use('/apip', producto_routes);
 app.use('/apis', saldo_routes);
 app.use('/apir', reportar_routes);
+app.use('/apiip', ip_routes);
+app.use('/apire', recarga_routes);
 
 
 
