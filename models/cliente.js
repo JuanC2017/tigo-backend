@@ -17,7 +17,7 @@ var ClienteSchema = Schema({
   user: { type: Schema.ObjectId, ref: 'User'},
   rol: {
         type: String,
-        enum: ['CLI_MAYORISTA', 'CLI_DISTRIBUIDOR', 'CLI_CLIENTE'],=>(CLI_CLIENTE SON LOS SAIs)
+        enum: ['CLI_MAYORISTA', 'CLI_DISTRIBUIDOR', 'CLI_CLIENTE']}
 
 });
 

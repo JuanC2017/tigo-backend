@@ -118,8 +118,51 @@ User.findOne({username: username}, (err, user) => {
 
 }
 
+function updateUser(req, res) {
+  var update = req.body;
+  var userId = req.params.id;
+
+
+  if (userId != req.user.sub) {
+    return res.status(500).send({message: "No tienes permiso para actualizar"});
+  }
+
+  User.findByIdAndUpdate(userId, update, {new: true}, (err, userUpdated) => {
+    if (err) {
+      res.status(500).send({
+        message: "Error al actualizar usuario"
+      });
+    }else {
+      if (!userUpdated) {
+        res.status(404).send({message: "No se ha podido actualizar el usuario"});
+      }else {
+        res.status(200).send({user: userUpdated});
+      }
+    }
+  });
+}
+
+function getListarUser(req, res) {
+  User.find({rol: 'ROLE_ADMIN'}).exec((err, users) => {
+    if (err) {
+      res.status(500).send({message: "Error en la peticion"});
+    }else {
+      if (!users) {
+        res.status(404).send({message: "No hay admins"});
+      }else {
+          res.status(200).send({users});
+      }
+    }
+  })
+
+
+}
+
+
 module.exports = {
   test,
   saveUser,
-  login
+  login,
+  updateUser,
+  getListarUser
 };
