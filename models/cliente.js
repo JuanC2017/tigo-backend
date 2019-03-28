@@ -11,8 +11,8 @@ var ClienteSchema = Schema({
   password : String,
   city : String,
   direccion : String,
-  celular : Number,
-  porc_tigo : Decimal,
+  cell : Number,
+  porc_tigo : Number,
   efecty : Boolean,
   user: { type: Schema.ObjectId, ref: 'User'},
   rol: {

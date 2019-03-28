@@ -158,11 +158,30 @@ function getListarCliente(req, res) {
           res.status(200).send({clientes});
       }
     }
-  })
+  });
+}
 
+function getCliente(req, res) {
+  var clienteId = req.paramsCliente.id;
 
+  Cliente.findById(clienteId).populate({path: 'user'}).exec((err, cliente) => {
+    if (err) {
+      res.status(500).send({message: "Error en la peticion"});
+    }else {
+      if (!cliente) {
+        res.status(404).send({message: "No hay cliente"});
+      }else {
+          res.status(200).send({cliente});
+      }
+    }
+  });
 }
 
 module.exports = {
-  test
+  test,
+  saveCliente,
+  login,
+  updateCliente,
+  getListarCliente,
+  getCliente
 };
