@@ -177,11 +177,30 @@ function getCliente(req, res) {
   });
 }
 
+function deleteCliente(req, res) {
+  var clienteId = req.params.id;
+
+  Cliente.findByIdAndRemove(animalId, (err, animalRemove) => {
+    if (err) {
+      res.status(500).send({message: 'Error en borrar cliente'});
+    }else {
+      if (!animalRemove) {
+        res.status(404).send({message: 'No se ha borrado el cliente'});
+      }else {
+        res.status(200).send({message: animalRemove});
+      }
+    }
+  });
+
+}
+
+
 module.exports = {
   test,
   saveCliente,
   login,
   updateCliente,
   getListarCliente,
-  getCliente
+  getCliente,
+  deleteCliente
 };

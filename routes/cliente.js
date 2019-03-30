@@ -12,5 +12,6 @@ api.post('/login', ClienteController.login);
 api.put('/actualizar-cliente/:id', middlewares.ensureAuth, ClienteController.updateCliente);
 api.get('/listar-clientes', ClienteController.getListarCliente);
 api.get('/listar-cliente/:id', ClienteController.getCliente);
+api.delete('/cliente/:id', middlewares.ensureAuth, ClienteController.deleteCliente);
 
 module.exports = api;

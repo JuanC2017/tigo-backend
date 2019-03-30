@@ -2,9 +2,11 @@
 
 var express = require('express');
 var UserController = require('../controllers/recarga');
+var RecargaController = require('../controllers/recarga');
 
 var api = express.Router();
 
 api.get('/test-controllers', UserController.test);
+api.get('/recarga', RecargaController.DoRecarga);
 
 module.exports = api;

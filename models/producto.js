@@ -9,6 +9,7 @@ var ProductoSchema = Schema({
   valor : Number,
   codigo : String,
   status : Boolean,
+  incentivo : Number,
   fcs : Date,
   fcs_up : Date,
   obs : String,

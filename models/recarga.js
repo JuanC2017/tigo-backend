@@ -3,10 +3,10 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var RecaSchema = Schema({
+var RecargaSchema = Schema({
     numero: { type: String, required: true },
     empresa: { type: String, required: true },
-    operador: { type: String, required: true },
+    user:{ type: Schema.ObjectId, ref: 'User'},
     monto: { type: String, required: true },
     respuesta: { type: String, required: true },
     fec_cre: { type: Date, default: Date.now() },
@@ -14,4 +14,4 @@ var RecaSchema = Schema({
 
 });
 
-module.exports = mongoose.model('Recarga', RecagaSchema);
+module.exports = mongoose.model('Recarga', RecargaSchema);
