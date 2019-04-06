@@ -10,3 +10,6 @@ var IpSchema = Schema({
     // fec_cre: {type: Date, default: Date.now()}
     // fec_upd: {type: Date, default: Date.now()}
 });
+
+
+module.exports = mongoose.model('Ip', IpSchema);

@@ -4,15 +4,13 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var ReportarSchema = Schema({
-  name : String,
-  valor_fac : Number,
-  valor : Number,
-  codigo : String,
-  status : Boolean,
+
+  num_vol:  String,
+  val:  Number,
   fcs : Date,
   fcs_up : Date,
-  obs : String,
-  user: { type: Schema.ObjectId, ref: 'User'}
+  recarga: { type: Schema.ObjectId, ref: 'Recarga'}
+
 });
 
-module.exports = mongoose.model('Producto', ProductoSchema);
+module.exports = mongoose.model('Reportar', ReportarSchema);

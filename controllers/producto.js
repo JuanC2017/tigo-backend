@@ -118,7 +118,7 @@ function deleteProducto(req, res) {
 
     var productoId = req.params.id; // esto es para recoger el id que tengo dentro de los parametros de la url
 
-    Product.findByIdAndRemove(productoId, (err, productoRemoved) => {
+    Producto.findByIdAndRemove(productoId, (err, productoRemoved) => {
         if (err) {
             res.status(500).send({ message: 'Error en la peticion' });
         } else {

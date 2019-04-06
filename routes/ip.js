@@ -8,5 +8,6 @@ var api = express.Router();
 
 api.get('/test-controllers', UserController.test);
 api.get('/ip', IpController.getip_black);
+api.delete('/ip/:id', IpController.deleteIp);
 
 module.exports = api;

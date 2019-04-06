@@ -38,35 +38,26 @@ function getip_black(req, res) {
 
 
 
-function delete_ip_black(req, res) {
+function deleteIp(req, res) {
 
-    var Ip_Id = req.params.id;
-    console.log(Ip_Id);
-    Ip_black.findByIdAndRemove(Ip_Id, (err, delete_ip) => {
+    var Ip_Id = req.params.id; // esto es para recoger el id que tengo dentro de los parametros de la url
+
+    Ip.findByIdAndRemove(Ip_Id, (err, IpRemoved) => {
         if (err) {
-            res.status(500).send({
-                message: 'error de peticion'
-            });
+            res.status(500).send({ message: 'Error en la peticion' });
         } else {
-            console.log("este es el delete_ip", delete_ip);
-            if (!delete_ip) {
-                res.status(404).send({
-                    message: 'Ip no eliminada'
-                });
+            if (!IpRemoved) {
+                res.status(404).send({ message: 'No se ha borrado la Ip' });
             } else {
-                res.status(200).send({
-                    message: 'Ip borrada'
-                });
+                res.status(200).send({ producto: IpRemoved });
             }
         }
-
     });
-
 }
 
 
 module.exports = {
   test,
   getip_black,
-  delete_ip_black
+  deleteIp
 };
