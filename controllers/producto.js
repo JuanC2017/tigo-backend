@@ -33,7 +33,7 @@ function createProducto(req, res) {
         producto.incentivo = paramsProducto.incentivo;
         producto.descripcion = paramsProducto.descripcion;
 
-        Product.findOne({ codigo: paramsProducto.codigo.toLowerCase() }, (err, productoDB) => {
+        Producto.findOne({ codigo: paramsProducto.codigo.toLowerCase() }, (err, productoDB) => {
             if (err) {
                 res.status(500).send({ message: 'Error al verificar producto' });
             } else {
@@ -63,7 +63,7 @@ function createProducto(req, res) {
 
 // listar todos los productos
 function getProductos(req, res) {
-    Product.find({}).populate({ path: 'user' }).exec((err, productos) => {
+    Producto.find({}).populate({ path: 'user' }).exec((err, productos) => {
         // .populate('usuario', 'nombre apellidos') para solo devolver los campos que quiero.
         if (err) {
             res.status(500).send({ message: 'Error en la peticion' });
@@ -83,7 +83,7 @@ function getProducto(req, res) {
 
     var productoId = req.params.id; // ojo aqui es params
 
-    Product.findById(productId).populate({ path: 'user' }).exec((err, producto) => {
+    Producto.findById(productId).populate({ path: 'user' }).exec((err, producto) => {
         if (err) {
             res.status(500).send({ message: 'Error en la peticion' });
         } else {
@@ -101,7 +101,7 @@ function updateProducto(req, res) {
     var productoId = req.params.id;
     var update = req.body;
     // Product hace referencia a la coleccion
-    Product.findByIdAndUpdate(productoId, update, { new: true }, (err, productoUpdated) => {
+    Producto.findByIdAndUpdate(productoId, update, { new: true }, (err, productoUpdated) => {
         if (err) {
             res.status(500).send({ message: 'Error en la peticion' });
         } else {
@@ -131,11 +131,30 @@ function deleteProducto(req, res) {
     });
 }
 
+
+function carritoProducto(req, res, $scope) {
+  $scope.carrito = [];
+  $scope.comprar = function(_item){
+    _item.ocultar = false;
+    $scope.carrito.push(_item);
+  }
+
+  $scope.total = function () {
+    var total = 0;
+    for (item of $scope.carrito) {
+
+      total += item.precio;
+
+    }
+  }
+}
+
 module.exports = {
   test,
   createProducto,
   getProductos,
   getProducto,
   updateProducto,
-  deleteProducto
+  deleteProducto,
+  carritoProducto
 };
